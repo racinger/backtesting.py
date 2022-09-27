@@ -557,6 +557,11 @@ class Trade:
         return self.__exit_price
 
     @property
+    def exit_logic(self) -> Optional[str]:
+        """Trade exit logic (or None if the trade is still active)."""
+        return self.__exit_logic
+
+    @property
     def entry_bar(self) -> int:
         """Candlestick bar index of when the trade was entered."""
         return self.__entry_bar
