@@ -950,12 +950,20 @@ class _Broker:
 
     def _close_trade(self, trade: Trade, price: float, time_index: int):
         self.trades.remove(trade)
+
+        if trade._sl_order and not trade._tp_order:
+            exit_logic = 'sp'
+        elif not trade._sl_order and trade._tp_order:
+            exit_logic = 'sl'
+        else:
+            exit_logic = 'eod'
+
         if trade._sl_order:
             self.orders.remove(trade._sl_order)
         if trade._tp_order:
             self.orders.remove(trade._tp_order)
 
-        self.closed_trades.append(trade._replace(exit_price=price, exit_bar=time_index, exit_logic='eod'))
+        self.closed_trades.append(trade._replace(exit_price=price, exit_bar=time_index, exit_logic=exit_logic))
         self._cash += trade.pl
 
     def _open_trade(self, price: float, size: int, sl: float, tp: float, time_index: int):
