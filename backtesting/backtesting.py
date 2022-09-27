@@ -514,6 +514,7 @@ class Trade:
         self.__size = size
         self.__entry_price = entry_price
         self.__exit_price: Optional[float] = None
+        self.__exit_logic: Optional[str] = None
         self.__entry_bar: int = entry_bar
         self.__exit_bar: Optional[int] = None
         self.__sl_order: Optional[Order] = None
@@ -954,7 +955,7 @@ class _Broker:
         if trade._tp_order:
             self.orders.remove(trade._tp_order)
 
-        self.closed_trades.append(trade._replace(exit_price=price, exit_bar=time_index))
+        self.closed_trades.append(trade._replace(exit_price=price, exit_bar=time_index, exit_logic='eod'))
         self._cash += trade.pl
 
     def _open_trade(self, price: float, size: int, sl: float, tp: float, time_index: int):
