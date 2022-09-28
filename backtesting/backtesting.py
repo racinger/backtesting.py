@@ -958,14 +958,14 @@ class _Broker:
         exit_logic = 'eod'
         if trade._sl_order:
             #print(f'trade._sl_order= {trade._sl_order}')
-            if hasattr(trade._sl_order, 'stop'):
+            if trade._sl_order.stop is not None:
                 exit_logic = 'eod'
             else:
                 exit_logic = 'sl'
             self.orders.remove(trade._sl_order)
         if trade._tp_order:
             #print(f'trade._tp_order= {trade._tp_order}')
-            if hasattr(trade._tp_order, 'stop'):
+            if trade._tp_order.stop is not None:
                 exit_logic = 'eod'
             else:
                 exit_logic = 'sp'
