@@ -973,8 +973,10 @@ class _Broker:
 
         if exit_logic != 'eod':
             if trade.pl > 0:
+                print(f'sp: {trade.pl}')
                 exit_logic = 'sp'
             else:
+                print(f'sl: {trade.pl}')
                 exit_logic = 'sl'
         self.closed_trades.append(trade._replace(exit_price=price, exit_bar=time_index, exit_logic=exit_logic))
         self._cash += trade.pl
