@@ -974,14 +974,14 @@ class _Broker:
         if exit_logic != 'eod':
             pnl = np.sign(trade.size) * (price - trade.entry_price)
             if pnl > 0:
-                print(f'sp: {trade}')
-                print(f'price: {price}')
-                print(f'pnl: {pnl}')
+                #print(f'sp: {trade}')
+                #print(f'price: {price}')
+                #print(f'pnl: {pnl}')
                 exit_logic = 'sp'
             else:
-                print(f'sl: {trade}')
-                print(f'price: {price}')
-                print(f'pnl: {pnl}')
+                #print(f'sl: {trade}')
+                #print(f'price: {price}')
+                #print(f'pnl: {pnl}')
                 exit_logic = 'sl'
         self.closed_trades.append(trade._replace(exit_price=price, exit_bar=time_index, exit_logic=exit_logic))
         self._cash += trade.pl
