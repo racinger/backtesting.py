@@ -971,6 +971,11 @@ class _Broker:
                 exit_logic = 'sp'
             self.orders.remove(trade._tp_order)
 
+        if exit_logic != 'eod':
+            if trade.pl_pct > 0:
+                exit_logic = 'sl'
+            else:
+                exit_logic = 'sp'
         self.closed_trades.append(trade._replace(exit_price=price, exit_bar=time_index, exit_logic=exit_logic))
         self._cash += trade.pl
 
