@@ -972,7 +972,7 @@ class _Broker:
             self.orders.remove(trade._tp_order)
 
         if exit_logic != 'eod':
-            pnl = np.sign(trade.size) * (price - trade.price)
+            pnl = np.sign(trade.size) * (price - trade.entry_price)
             if pnl > 0:
                 print(f'sp: {trade}')
                 print(f'price: {price}')
