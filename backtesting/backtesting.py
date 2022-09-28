@@ -955,9 +955,9 @@ class _Broker:
 
     def _close_trade(self, trade: Trade, price: float, time_index: int):
         self.trades.remove(trade)
-        print(f'trade._sl_order= {trade._sl_order.stop}')
-        print(f'trade._sp_order= {trade._tp_order.stop}')
-        if trade._sl_order.stop and not trade._tp_order:
+
+
+        if trade._sl_order and not trade._tp_order:
             exit_logic = 'sp'
         elif not trade._sl_order and trade._tp_order:
             exit_logic = 'sl'
@@ -965,8 +965,10 @@ class _Broker:
             exit_logic = 'eod'
 
         if trade._sl_order:
+            print(f'trade._sl_order= {trade._sl_order}')
             self.orders.remove(trade._sl_order)
         if trade._tp_order:
+            print(f'trade._tp_order= {trade._tp_order}')
             self.orders.remove(trade._tp_order)
 
         self.closed_trades.append(trade._replace(exit_price=price, exit_bar=time_index, exit_logic=exit_logic))
