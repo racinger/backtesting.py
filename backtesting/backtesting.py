@@ -514,6 +514,7 @@ class Trade:
         self.__size = size
         self.__entry_price = entry_price
         self.__exit_price: Optional[float] = None
+        self.__category: Optional[float] = None
         self.__exit_logic: Optional[str] = None
         self.__entry_bar: int = entry_bar
         self.__exit_bar: Optional[int] = None
@@ -550,6 +551,11 @@ class Trade:
     def entry_price(self) -> float:
         """Trade entry price."""
         return self.__entry_price
+
+    @property
+    def category(self) -> float:
+        """Category entry price."""
+        return self.__category
 
     @property
     def exit_price(self) -> Optional[float]:
