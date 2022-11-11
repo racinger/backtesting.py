@@ -553,7 +553,7 @@ class Trade:
         return self.__entry_price
 
     @property
-    def category(self) -> float:
+    def category(self) -> Optional[float]:
         """Category entry price."""
         return self.__category
 
